@@ -4,16 +4,17 @@
 -->
 <template>
   <div class="bg">
+    <div class="header-pic"><img src="../../public/node.jpg" /></div>
     <div class="row">
       <div class="label">账号</div>
-      <el-input size="small" v-model="form.account"></el-input>
+      <el-input size="medium" v-model="form.account"></el-input>
     </div>
     <div class="row">
       <div class="label">密码</div>
-      <el-input size="small" v-model="form.password"></el-input>
+      <el-input size="medium" v-model="form.password"></el-input>
     </div>
     <div class="btngroup">
-      <el-button @click="handleLogin">Login</el-button>
+      <el-button @click="handleLogin">登录</el-button>
     </div>
   </div>
 </template>
@@ -45,17 +46,26 @@ export default {
 <style lang="scss" scoped>
 .bg {
   padding: 20px 30px;
+  width: 40%;
+  margin: 0 auto;
+  .header-pic {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 40px;
+    img {
+      width: 30%;
+      height: 30%;
+    }
+  }
   .row {
-    margin-top: 10px;
+    margin-top: 20px;
     display: flex;
     align-items: center;
-    width: 40%;
     .label {
       width: 10%;
     }
   }
   .btngroup {
-    width: 40%;
     margin-top: 30px;
     display: flex;
     justify-content: center;
