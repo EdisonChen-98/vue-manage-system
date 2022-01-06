@@ -7,7 +7,7 @@
     <div class="header-pic"><img src="../../public/node.jpg" /></div>
     <div class="row">
       <div class="label">账号</div>
-      <el-input size="medium" v-model="form.account"></el-input>
+      <el-input size="medium" v-model="form.username"></el-input>
     </div>
     <div class="row">
       <div class="label">密码</div>
@@ -15,38 +15,46 @@
     </div>
     <div class="btngroup">
       <el-button @click="handleLogin">登录</el-button>
+      <el-button @click="handleRegister">注册</el-button>
     </div>
   </div>
 </template>
 
 <script>
-import { handleLogin } from "@/api/login";
+import { apiLogin } from "@/api/login";
 export default {
   name: "Login",
   data() {
     return {
       form: {
-        account: "",
+        username: "",
         password: "",
       },
     };
   },
   methods: {
     async handleLogin() {
-      let { account, password } = this.form;
-      await handleLogin({
-        account,
+      let { username, password } = this.form;
+      await apiLogin({
+        username,
         password,
       });
+    },
+    handleRegister() {
+      this.$router.push({ name: "Register" });
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.el-button {
+  font-size: 18px;
+}
 .bg {
   padding: 20px 30px;
   width: 40%;
+  height: 100%;
   margin: 0 auto;
   .header-pic {
     display: flex;
@@ -63,6 +71,7 @@ export default {
     align-items: center;
     .label {
       width: 10%;
+      font-size: 18px;
     }
   }
   .btngroup {

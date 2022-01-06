@@ -9,13 +9,18 @@
 <script>
 export default {
   name: "AppMain",
-  data() {},
+  data() {
+    return {};
+  },
+  mounted() {
+    console.log(window.innerHeight);
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .appmain {
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh-20px);
 }
 </style>

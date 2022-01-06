@@ -4,9 +4,17 @@
  */
 import request from '@/util/http.js'
 
-export function handleLogin(data) {
+export function apiLogin(data) {
     return request({
-        url: 'auth/login',
+        url: 'common/login',
+        method: 'post',
+        data
+    })
+}
+
+export function apiRegister(data) {
+    return request({
+        url: 'common/register',
         method: 'post',
         data
     })
