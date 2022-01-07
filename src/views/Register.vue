@@ -43,7 +43,12 @@ export default {
           type: "warning",
         });
       }
-      await apiRegister({ username, password });
+      await apiRegister({ username, password }).catch(() => {});
+      this.$message({
+        message: "注册成功",
+        type: "success",
+      });
+      this.$router.push({ name: "Login" });
     },
     handleCancel() {
       this.$router.go(-1);

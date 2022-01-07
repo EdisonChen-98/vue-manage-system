@@ -12,9 +12,7 @@ export default {
   data() {
     return {};
   },
-  mounted() {
-    console.log(window.innerHeight);
-  },
+  mounted() {},
 };
 </script>
 

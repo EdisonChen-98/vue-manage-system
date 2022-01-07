@@ -3,6 +3,7 @@
  * @Date: 2022-01-06 10:02:39
  */
 import axios from "axios";
+import Vue from '@/main.js'
 
 // create an axios instance
 const service = axios.create({
@@ -29,8 +30,9 @@ service.interceptors.request.use(
     //   config.headers["X-Token"] = getToken();
     // }
     return config;
-  },
+  }, 
   error => {
+    console.log('reqError++++',error)
     // do something with request error
     return Promise.reject(error);
   }
@@ -49,7 +51,13 @@ service.interceptors.response.use(
    * You can also judge the status by HTTP Status Code
    */
   response => {
-    const res = response.data;
+    let res = response.data
+    if(res.status!=0){
+      Vue.prototype.$message(
+        {type:'warning', message:res.message}
+      )
+      return Promise.reject(res)
+    }
     // if (response.headers.to_authorize_url) {
     //   window.location.href = response.headers.to_authorize_url;
     //   return;
@@ -69,7 +77,7 @@ service.interceptors.response.use(
     //   });
     //   return Promise.reject();
     // }
-    return res;
+    return response.data;
   },
   error => {
     // hideLoading();
@@ -78,8 +86,10 @@ service.interceptors.response.use(
     //   type: "error",
     //   duration: 5 * 1000
     // });
-    console.log(error);
-    return Promise.reject();
+    Vue.prototype.$message.error(
+     error
+    );
+    return Promise.reject(error);
   }
 );
 

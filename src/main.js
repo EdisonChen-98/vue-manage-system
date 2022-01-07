@@ -21,3 +21,5 @@ new Vue({
   render: h => h(App),
   router
 }).$mount('#app')
+
+export default Vue
