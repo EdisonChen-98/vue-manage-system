@@ -43,7 +43,7 @@ export default {
           type: "warning",
         });
       }
-      await apiRegister({ username, password }).catch(() => {});
+      await apiRegister({ username, password });
       this.$message({
         message: "注册成功",
         type: "success",

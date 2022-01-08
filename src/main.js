@@ -17,9 +17,9 @@ Vue.use(ElementUI);
 
 
 
-new Vue({
+var vue = new Vue({
   render: h => h(App),
   router
 }).$mount('#app')
 
-export default Vue
+export default vue

@@ -3,7 +3,7 @@
  * @Date: 2022-01-06 10:02:39
  */
 import axios from "axios";
-import Vue from '@/main.js'
+import vue from '@/main.js'
 
 // create an axios instance
 const service = axios.create({
@@ -32,7 +32,6 @@ service.interceptors.request.use(
     return config;
   }, 
   error => {
-    console.log('reqError++++',error)
     // do something with request error
     return Promise.reject(error);
   }
@@ -53,7 +52,7 @@ service.interceptors.response.use(
   response => {
     let res = response.data
     if(res.status!=0){
-      Vue.prototype.$message(
+      vue.$message(
         {type:'warning', message:res.message}
       )
       return Promise.reject(res)
@@ -86,7 +85,7 @@ service.interceptors.response.use(
     //   type: "error",
     //   duration: 5 * 1000
     // });
-    Vue.prototype.$message.error(
+    vue.$message.error(
      error
     );
     return Promise.reject(error);
