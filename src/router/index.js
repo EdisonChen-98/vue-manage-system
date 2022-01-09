@@ -7,22 +7,25 @@ import Router from "vue-router";
 const routes = [
     {
         path: "/",
-        component: () => import("@/views/AppMain.vue"),
+        component: () => import("@/App.vue"),
         redirect: '/login',
-        children: [
-            {
-                path: "login",
-                name: "Login",
-                component: () => import("@/views/Login.vue"),
-            },
-            {
-                path: "register",
-                name: "Register",
-                component: () => import("@/views/Register.vue"),
-            }
-        ]
-
+        children: [{
+            path: "login",
+            name: "Login",
+            component: () => import("@/views/Login.vue"),
+        },
+        {
+            path: "register",
+            name: "Register",
+            component: () => import("@/views/Register.vue"),
+        },
+        {
+            path: "/system",
+            name: "System",
+            component: () => import("@/views/Layout.vue"),
+        }]
     },
+
 ]
 const createRouter = () =>
     new Router({

@@ -39,6 +39,9 @@ export default {
         username,
         password,
       });
+      this.$router.push({
+        name: "System",
+      });
     },
     handleRegister() {
       this.$router.push({ name: "Register" });
@@ -52,11 +55,11 @@ export default {
   font-size: 18px;
 }
 .bg {
-  padding: 20px 30px;
   width: 40%;
   height: 100%;
   margin: 0 auto;
   .header-pic {
+    padding-top: 20px;
     display: flex;
     justify-content: center;
     padding-bottom: 40px;
