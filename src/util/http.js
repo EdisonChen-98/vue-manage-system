@@ -76,6 +76,9 @@ service.interceptors.response.use(
     //   });
     //   return Promise.reject();
     // }
+    vue.$message(
+      {type:'success', message:res.message}
+    )
     return response.data;
   },
   error => {

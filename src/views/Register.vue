@@ -44,10 +44,6 @@ export default {
         });
       }
       await apiRegister({ username, password, confirmPassword });
-      this.$message({
-        message: "注册成功",
-        type: "success",
-      });
       this.$router.push({ name: "Login" });
     },
     handleCancel() {
