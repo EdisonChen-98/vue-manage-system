@@ -14,7 +14,7 @@
         <el-input v-model="form.confirmPassword"></el-input>
       </div>
       <div class="btngroup">
-        <el-button @click="handleConfirm">确认</el-button>
+        <el-button @click="handleConfirm" type="primary">确认</el-button>
         <el-button @click="handleCancel">取消</el-button>
       </div>
     </div>
