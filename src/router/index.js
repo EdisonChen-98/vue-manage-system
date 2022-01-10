@@ -23,6 +23,19 @@ const routes = [
             path: "/system",
             name: "System",
             component: () => import("@/views/Layout.vue"),
+            redirect: 'system/personalInfo',
+            children: [
+                {
+                    path: "personalInfo",
+                    name: "personalInfo",
+                    component: () => import("@/views/components/personalInfo.vue"),
+                },
+                {
+                    path: "covidOverview",
+                    name: "covidOverview",
+                    component: () => import("@/views/components/covidOverview.vue"),
+                }
+            ]
         }]
     },
 

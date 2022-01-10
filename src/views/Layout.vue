@@ -1,25 +1,32 @@
+<!--
+ * @Author: Edison Chen
+ * @Date: 2022-01-10 09:22:41
+-->
 <template>
   <div class="whole">
     <div class="content">
       <div class="navbar">
+        <img src="../../public/node.jpg" />
+        <span class="title">疫情数据管理平台</span>
         <el-button type="text" class="logout">退出登录</el-button>
       </div>
-      <el-col :span="6" class="menu">
-        <el-menu default-active="1" class="el-menu-vertical-demo">
-          <el-menu-item index="1">
-            <i class="el-icon-menu"></i>
-            <span slot="title">个人信息</span>
-          </el-menu-item>
-          <el-menu-item index="2">
-            <i class="el-icon-menu"></i>
-            <span slot="title">模块二</span>
-          </el-menu-item>
-          <el-menu-item index="3">
-            <i class="el-icon-menu"></i>
-            <span slot="title">模块三</span>
-          </el-menu-item>
-        </el-menu></el-col
-      >
+      <div class="downpart">
+        <div class="menu">
+          <el-menu default-active="1" class="el-menu-vertical-demo">
+            <el-menu-item index="1">
+              <i class="el-icon-user"></i>
+              <span slot="title">个人信息</span>
+            </el-menu-item>
+            <el-menu-item index="2">
+              <i class="el-icon-tickets"></i>
+              <span slot="title">疫情数据总览</span>
+            </el-menu-item>
+          </el-menu>
+        </div>
+        <div class="router-content">
+          <router-view />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -34,25 +41,55 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.el-menu {
+  border-right: none;
+}
 .el-menu-item {
-  font-size: 18px;
+  font-size: 14px;
 }
 .whole {
   width: 100%;
   height: 100%;
   .content {
     padding: 20px 30px;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
     .navbar {
       border-bottom: 1px solid #e6e6e6;
       margin-bottom: 10px;
-      overflow: hidden;
+      display: flex;
+      align-items: center;
+      height: 45px;
+      img {
+        width: 35px;
+        height: 35px;
+      }
+      .title {
+        font-size: 22px;
+        padding-left: 10px;
+      }
       .logout {
-        float: right;
-        font-size: 15px;
+        font-size: 14px;
+        margin-left: auto;
       }
     }
-    .menu {
-      text-align: center;
+    .downpart {
+      flex: 1;
+      display: flex;
+      height: 100%;
+      .menu {
+        width: 15%;
+        height: 100%;
+        text-align: center;
+        height: 100%;
+        border-right: 1px solid #e6e6e6;
+      }
+      .router-content {
+        width: 80%;
+        height: 100%;
+      }
     }
   }
 }
