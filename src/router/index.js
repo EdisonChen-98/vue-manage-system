@@ -3,6 +3,8 @@
  * @Date: 2022-01-06 11:48:07
  */
 import Router from "vue-router";
+import dashboard from './modules/dashboard'
+import user from './modules/user'
 
 const routes = [
     {
@@ -23,18 +25,9 @@ const routes = [
             path: "/system",
             name: "System",
             component: () => import("@/views/Layout.vue"),
-            redirect: 'system/personalInfo',
+            redirect: 'system/dashboard',
             children: [
-                {
-                    path: "personalInfo",
-                    name: "personalInfo",
-                    component: () => import("@/views/components/personalInfo.vue"),
-                },
-                {
-                    path: "covidOverview",
-                    name: "covidOverview",
-                    component: () => import("@/views/components/covidOverview.vue"),
-                }
+                ...dashboard, ...user
             ]
         }]
     },

@@ -17,6 +17,10 @@ const service = axios.create({
 // request interceptor
 service.interceptors.request.use(
   config => {
+    if (config.url.split('/')[0] === 'auth') {
+      const token = window.localStorage.getItem('token')
+      config.headers.Authorization = token
+    }
     // if (config.url.indexOf("?") > -1) {
     //   config.url = config.url + "&t=" + new Date().getTime();
     // } else {
@@ -30,7 +34,7 @@ service.interceptors.request.use(
     //   config.headers["X-Token"] = getToken();
     // }
     return config;
-  }, 
+  },
   error => {
     // do something with request error
     return Promise.reject(error);
@@ -51,9 +55,12 @@ service.interceptors.response.use(
    */
   response => {
     let res = response.data
-    if(res.status!=0){
+    if (res.status != 0) {
+      if (res.message === '身份认证失败,请重新登录') {
+        vue.$router.push({ name: 'Login' })
+      }
       vue.$message(
-        {type:'warning', message:res.message}
+        { type: 'warning', message: res.message }
       )
       return Promise.reject(res)
     }
@@ -77,7 +84,7 @@ service.interceptors.response.use(
     //   return Promise.reject();
     // }
     vue.$message(
-      {type:'success', message:res.message}
+      { type: 'success', message: res.message }
     )
     return response.data;
   },
@@ -89,7 +96,7 @@ service.interceptors.response.use(
     //   duration: 5 * 1000
     // });
     vue.$message.error(
-     error
+      error
     );
     return Promise.reject(error);
   }

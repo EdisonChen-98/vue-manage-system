@@ -7,25 +7,63 @@
     <div class="content">
       <div class="navbar">
         <img src="../../public/node.jpg" />
-        <span class="title">疫情数据管理平台</span>
-        <el-tooltip
-          class="item"
-          effect="dark"
-          content="退出登录"
-          placement="bottom"
-          ><span class="iconfont icon-logout logout"></span
-        ></el-tooltip>
+        <span class="title">外卖商户后台管理平台</span>
+        <div class="navbar-btn">
+          <el-tooltip
+            class="item"
+            effect="dark"
+            content="用户信息"
+            placement="bottom"
+            ><i class="el-icon-user user" @click="clickUserInfo"></i
+          ></el-tooltip>
+          <el-tooltip
+            class="item"
+            effect="dark"
+            content="退出登录"
+            placement="bottom"
+            ><span
+              class="iconfont icon-logout logout"
+              @click="clickLogout"
+            ></span
+          ></el-tooltip>
+        </div>
       </div>
       <div class="downpart">
         <div class="menu">
-          <el-menu default-active="1" class="el-menu-vertical-demo">
+          <el-menu
+            default-active="1"
+            class="el-menu-vertical-demo"
+            @select="handleMenuSelect"
+          >
             <el-menu-item index="1">
-              <i class="el-icon-user"></i>
-              <span slot="title">个人信息</span>
+              <template slot="title">
+                <span
+                  class="iconfont icon-shouye icon"
+                  style="font-size: 22px"
+                ></span>
+                <span slot="title">首页</span></template
+              >
             </el-menu-item>
-            <el-menu-item index="2">
-              <i class="el-icon-tickets"></i>
-              <span slot="title">疫情数据总览</span>
+            <el-submenu index="2">
+              <template slot="title">
+                <span
+                  class="iconfont icon-shanghu icon"
+                  style="font-size: 18px"
+                ></span>
+                <span slot="title">商铺</span></template
+              >
+              <el-menu-item-group>
+                <el-menu-item index="2-1">商铺总览</el-menu-item>
+                <el-menu-item index="2-2">我的商铺</el-menu-item>
+              </el-menu-item-group>
+            </el-submenu>
+
+            <el-menu-item index="3">
+              <span
+                class="iconfont icon-quanxian icon"
+                style="font-size: 20px"
+              ></span>
+              <span slot="title">权限</span>
             </el-menu-item>
           </el-menu>
         </div>
@@ -43,6 +81,29 @@ export default {
   data() {
     return {};
   },
+  methods: {
+    handleMenuSelect(index, indexPath) {
+      console.log("+++", index, indexPath);
+    },
+    clickUserInfo() {
+      this.$router.push({ name: "userInfo" });
+    },
+    clickLogout() {
+      this.$confirm("你确定要登出吗?", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+      })
+        .then(() => {
+          this.$message({
+            message: "成功登出",
+            type: "success",
+          });
+          this.$router.push({ name: "Login" });
+        })
+        .catch(() => {});
+    },
+  },
 };
 </script>
 
@@ -51,7 +112,10 @@ export default {
   border-right: none;
 }
 .el-menu-item {
-  font-size: 14px;
+  font-size: 18px;
+}
+::v-deep .el-submenu__title {
+  font-size: 18px;
 }
 .whole {
   width: 100%;
@@ -65,22 +129,29 @@ export default {
     .navbar {
       border-bottom: 1px solid #e6e6e6;
       margin-bottom: 10px;
-      padding-bottom: 5px;
+      padding-bottom: 10px;
       display: flex;
       align-items: center;
       height: 45px;
       img {
-        width: 35px;
-        height: 35px;
+        width: 38px;
+        height: 38px;
       }
       .title {
-        font-size: 22px;
+        font-size: 28px;
         padding-left: 10px;
       }
-      .logout {
-        font-size: 20px;
+      .navbar-btn {
         margin-left: auto;
-        cursor: pointer;
+        .user {
+          font-size: 24px;
+          cursor: pointer;
+          margin-right: 15px;
+        }
+        .logout {
+          font-size: 24px;
+          cursor: pointer;
+        }
       }
     }
     .downpart {
@@ -93,6 +164,9 @@ export default {
         text-align: center;
         height: 100%;
         border-right: 1px solid #e6e6e6;
+        .icon {
+          padding-right: 10px;
+        }
       }
       .router-content {
         width: 80%;

@@ -1,16 +1,20 @@
 <!--
  * @Author: Edison Chen
- * @Date: 2022-01-10 14:50:11
+ * @Date: 2022-01-10 14:50:45
 -->
 <template>
-  <div>个人信息</div>
+  <div>用户信息</div>
 </template>
 
 <script>
+import { apiGetUserInfo } from "@/api/user";
 export default {
-  name: "personalinfo",
+  name: "userInfo",
   data() {
     return {};
+  },
+  mounted() {
+    apiGetUserInfo();
   },
 };
 </script>

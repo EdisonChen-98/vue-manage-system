@@ -32,13 +32,17 @@ export default {
       },
     };
   },
+  mounted() {
+    window.localStorage.clear();
+  },
   methods: {
     async handleLogin() {
       let { username, password } = this.form;
-      await apiLogin({
+      const { token } = await apiLogin({
         username,
         password,
       });
+      window.localStorage.setItem("token", token);
       this.$router.push({
         name: "System",
       });

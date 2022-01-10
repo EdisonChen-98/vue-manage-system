@@ -1,14 +1,14 @@
 <!--
  * @Author: Edison Chen
- * @Date: 2022-01-10 14:50:45
+ * @Date: 2022-01-10 14:50:11
 -->
 <template>
-  <div>疫情总览</div>
+  <div>首页</div>
 </template>
 
 <script>
 export default {
-  name: "covidOverview",
+  name: "Dashboard",
   data() {
     return {};
   },

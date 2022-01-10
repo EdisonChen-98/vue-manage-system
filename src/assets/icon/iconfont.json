@@ -1,10 +1,31 @@
 {
   "id": "3129840",
-  "name": "疫情数据管理平台",
+  "name": "外卖商户后台管理平台",
   "font_family": "iconfont",
   "css_prefix_text": "icon-",
   "description": "",
   "glyphs": [
+    {
+      "icon_id": "2675009",
+      "name": "首页",
+      "font_class": "shouye",
+      "unicode": "e62e",
+      "unicode_decimal": 58926
+    },
+    {
+      "icon_id": "650789",
+      "name": "商户",
+      "font_class": "shanghu",
+      "unicode": "e63e",
+      "unicode_decimal": 58942
+    },
+    {
+      "icon_id": "1305474",
+      "name": "权限",
+      "font_class": "quanxian",
+      "unicode": "e63f",
+      "unicode_decimal": 58943
+    },
     {
       "icon_id": "4765888",
       "name": "logout",
