@@ -8,7 +8,13 @@
       <div class="navbar">
         <img src="../../public/node.jpg" />
         <span class="title">疫情数据管理平台</span>
-        <el-button type="text" class="logout">退出登录</el-button>
+        <el-tooltip
+          class="item"
+          effect="dark"
+          content="退出登录"
+          placement="bottom"
+          ><span class="iconfont icon-logout logout"></span
+        ></el-tooltip>
       </div>
       <div class="downpart">
         <div class="menu">
@@ -59,6 +65,7 @@ export default {
     .navbar {
       border-bottom: 1px solid #e6e6e6;
       margin-bottom: 10px;
+      padding-bottom: 5px;
       display: flex;
       align-items: center;
       height: 45px;
@@ -71,8 +78,9 @@ export default {
         padding-left: 10px;
       }
       .logout {
-        font-size: 14px;
+        font-size: 20px;
         margin-left: auto;
+        cursor: pointer;
       }
     }
     .downpart {
