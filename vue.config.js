@@ -15,5 +15,11 @@ module.exports = {
     chainWebpack: config => {
         config.resolve.alias
             .set('@', resolve('src'))
+
+        config.plugin('html')
+            .tap(args => {
+                args[0].title = '商户后台管理系统'
+                return args
+            })
     },
 }
