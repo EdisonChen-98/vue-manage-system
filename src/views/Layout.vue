@@ -6,7 +6,7 @@
   <div class="whole">
     <div class="content">
       <div class="navbar">
-        <img src="../../public/node.jpg" />
+        <img src="../../public/node.png" />
         <span class="title">外卖商户后台管理平台</span>
         <div class="navbar-btn">
           <el-tooltip
@@ -47,8 +47,8 @@
             <el-submenu index="2">
               <template slot="title">
                 <span
-                  class="iconfont icon-shanghu icon"
-                  style="font-size: 18px"
+                  class="iconfont icon-shangjia icon"
+                  style="font-size: 20px"
                 ></span>
                 <span slot="title">商铺</span></template
               >
@@ -61,7 +61,7 @@
             <el-menu-item index="3">
               <span
                 class="iconfont icon-quanxian icon"
-                style="font-size: 20px"
+                style="font-size: 21px"
               ></span>
               <span slot="title">权限</span>
             </el-menu-item>
@@ -112,10 +112,10 @@ export default {
   border-right: none;
 }
 .el-menu-item {
-  font-size: 18px;
+  font-size: 16px;
 }
 ::v-deep .el-submenu__title {
-  font-size: 18px;
+  font-size: 16px;
 }
 .whole {
   width: 100%;
@@ -134,11 +134,11 @@ export default {
       align-items: center;
       height: 45px;
       img {
-        width: 38px;
-        height: 38px;
+        width: 60px;
+        height: 55px;
       }
       .title {
-        font-size: 28px;
+        font-size: 26px;
         padding-left: 10px;
       }
       .navbar-btn {
@@ -169,7 +169,7 @@ export default {
         }
       }
       .router-content {
-        width: 80%;
+        flex: 1;
         height: 100%;
       }
     }

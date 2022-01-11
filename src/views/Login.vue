@@ -4,7 +4,7 @@
 -->
 <template>
   <div class="bg">
-    <div class="header-pic"><img src="../../public/node.jpg" /></div>
+    <div class="header-pic"><img src="../../public/node.png" /></div>
     <div class="row">
       <div class="label">账号</div>
       <el-input size="medium" v-model="form.username"></el-input>
@@ -68,7 +68,7 @@ export default {
     justify-content: center;
     padding-bottom: 40px;
     img {
-      width: 30%;
+      width: 35%;
       height: 30%;
     }
   }
