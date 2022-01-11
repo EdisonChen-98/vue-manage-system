@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: "Dashboard",
+  name: "Home",
   data() {
     return {};
   },

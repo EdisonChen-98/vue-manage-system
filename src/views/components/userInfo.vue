@@ -112,6 +112,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+::v-deep .el-input--suffix {
+  width: 60px;
+}
 .bg {
   padding: 15px 20px 0 20px;
   color: #646669;
@@ -126,10 +129,9 @@ export default {
         align-items: center;
         height: 28px;
         margin-top: 10px;
+        margin-left: 40px;
         .row-key {
           width: 20%;
-          position: relative;
-          left: 40px;
         }
         .row-value {
           width: 80%;

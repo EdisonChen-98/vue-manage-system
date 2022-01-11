@@ -6,7 +6,7 @@
   <div class="whole">
     <div class="content">
       <div class="navbar">
-        <img src="../../public/node.png" />
+        <img src="../../public/js.svg" />
         <span class="title">商户后台管理平台</span>
         <div class="navbar-btn">
           <el-tooltip

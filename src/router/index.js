@@ -3,7 +3,7 @@
  * @Date: 2022-01-06 11:48:07
  */
 import Router from "vue-router";
-import dashboard from './modules/dashboard'
+import home from './modules/home'
 import user from './modules/user'
 
 const routes = [
@@ -25,9 +25,9 @@ const routes = [
             path: "/system",
             name: "System",
             component: () => import("@/views/Layout.vue"),
-            redirect: 'system/dashboard',
+            redirect: 'system/home',
             children: [
-                ...dashboard, ...user
+                ...home, ...user
             ]
         }]
     },
@@ -35,10 +35,10 @@ const routes = [
 ]
 
 //防止到相同路由时冗余路由报错
-const originalPush = Router.prototype.push
-Router.prototype.push = function push(location) {
-    return originalPush.call(this, location).catch(err => err)
-}
+// const originalPush = Router.prototype.push
+// Router.prototype.push = function push(location) {
+//     return originalPush.call(this, location).catch(err => err)
+// }
 const createRouter = () =>
     new Router({
         routes
