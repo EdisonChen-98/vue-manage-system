@@ -7,7 +7,7 @@
     <div class="content">
       <div class="navbar">
         <img src="../../public/node.png" />
-        <span class="title">外卖商户后台管理平台</span>
+        <span class="title">商户后台管理平台</span>
         <div class="navbar-btn">
           <el-tooltip
             class="item"
@@ -21,10 +21,7 @@
             effect="dark"
             content="退出登录"
             placement="bottom"
-            ><span
-              class="iconfont icon-logout logout"
-              @click="clickLogout"
-            ></span
+            ><i class="iconfont icon-logout logout" @click="clickLogout"></i
           ></el-tooltip>
         </div>
       </div>
@@ -37,19 +34,19 @@
           >
             <el-menu-item index="1">
               <template slot="title">
-                <span
+                <i
                   class="iconfont icon-shouye icon"
                   style="font-size: 22px"
-                ></span>
+                ></i>
                 <span slot="title">首页</span></template
               >
             </el-menu-item>
             <el-submenu index="2">
               <template slot="title">
-                <span
+                <i
                   class="iconfont icon-shangjia icon"
                   style="font-size: 20px"
-                ></span>
+                ></i>
                 <span slot="title">商铺</span></template
               >
               <el-menu-item-group>
@@ -59,10 +56,10 @@
             </el-submenu>
 
             <el-menu-item index="3">
-              <span
+              <i
                 class="iconfont icon-quanxian icon"
                 style="font-size: 21px"
-              ></span>
+              ></i>
               <span slot="title">权限</span>
             </el-menu-item>
           </el-menu>
