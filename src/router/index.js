@@ -35,7 +35,6 @@ const routes = [
     },
 
 ]
-console.log('+++route', routes);
 
 //防止到相同路由时冗余路由报错
 // const originalPush = Router.prototype.push
