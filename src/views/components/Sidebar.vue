@@ -39,6 +39,9 @@
 <script>
 export default {
   name: "Sidebar",
+  data() {
+    return {};
+  },
   methods: {
     handleMenuSelect(index) {
       this.$router.push({ name: index });

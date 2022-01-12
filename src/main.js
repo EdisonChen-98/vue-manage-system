@@ -9,8 +9,9 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import router from '@/router/index.js'
 import '@/assets/icon/iconfont.css'
+import { tableHeaderColor } from '@/util/index'
 
-
+Vue.prototype.tableHeaderColor = tableHeaderColor
 Vue.config.productionTip = false
 
 Vue.use(VueRouter)

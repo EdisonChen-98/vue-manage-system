@@ -123,7 +123,7 @@ export default {
   width: 100px;
 }
 .bg {
-  padding: 15px 20px 0 20px;
+  padding: 20px;
   color: #646669;
   font-size: 14px;
   .info-detail {
