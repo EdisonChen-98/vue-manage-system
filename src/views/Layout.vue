@@ -12,7 +12,7 @@
           <el-tooltip
             class="item"
             effect="dark"
-            content="用户信息"
+            content="商户信息"
             placement="bottom"
             ><i class="el-icon-user user" @click="clickUserInfo"></i
           ></el-tooltip>
@@ -28,11 +28,11 @@
       <div class="downpart">
         <div class="menu">
           <el-menu
-            default-active="1"
+            default-active="Home"
             class="el-menu-vertical-demo"
             @select="handleMenuSelect"
           >
-            <el-menu-item index="1">
+            <el-menu-item index="Home">
               <template slot="title">
                 <i
                   class="iconfont icon-shouye icon"
@@ -41,7 +41,7 @@
                 <span slot="title">首页</span></template
               >
             </el-menu-item>
-            <el-submenu index="2">
+            <el-submenu index="Shop">
               <template slot="title">
                 <i
                   class="iconfont icon-shangjia icon"
@@ -50,17 +50,19 @@
                 <span slot="title">商铺</span></template
               >
               <el-menu-item-group>
-                <el-menu-item index="2-1">商铺总览</el-menu-item>
-                <el-menu-item index="2-2">我的商铺</el-menu-item>
+                <el-menu-item index="shopOverview">商铺总览</el-menu-item>
+                <el-menu-item index="myShop">我的商铺</el-menu-item>
               </el-menu-item-group>
             </el-submenu>
 
-            <el-menu-item index="3">
-              <i
-                class="iconfont icon-quanxian icon"
-                style="font-size: 21px"
-              ></i>
-              <span slot="title">权限</span>
+            <el-menu-item index="Auth">
+              <template>
+                <i
+                  class="iconfont icon-quanxian icon"
+                  style="font-size: 21px"
+                ></i>
+                <span slot="title">权限</span></template
+              >
             </el-menu-item>
           </el-menu>
         </div>
@@ -81,6 +83,7 @@ export default {
   methods: {
     handleMenuSelect(index, indexPath) {
       console.log("+++", index, indexPath);
+      this.$router.push({ name: index });
     },
     clickUserInfo() {
       this.$router.push({ name: "userInfo" });
@@ -131,12 +134,11 @@ export default {
       align-items: center;
       height: 45px;
       img {
-        width: 60px;
         height: 55px;
       }
       .title {
-        font-size: 26px;
-        padding-left: 10px;
+        font-size: 24px;
+        padding-left: 5px;
       }
       .navbar-btn {
         margin-left: auto;

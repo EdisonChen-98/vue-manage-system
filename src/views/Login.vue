@@ -68,8 +68,7 @@ export default {
     justify-content: center;
     padding-bottom: 40px;
     img {
-      width: 35%;
-      height: 30%;
+      width: 30%;
     }
   }
   .row {

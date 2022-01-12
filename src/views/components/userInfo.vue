@@ -4,9 +4,13 @@
 -->
 <template>
   <div class="bg">
-    <tooltipTitle title="用户信息" info="用户信息"></tooltipTitle>
+    <tooltipTitle title="商户信息" info="商户信息"></tooltipTitle>
     <div class="info-detail">
       <div class="left-part">
+        <div class="detail-row">
+          <div class="row-key">ID:</div>
+          <div class="row-value">{{ userInfo.id }}</div>
+        </div>
         <div class="detail-row">
           <div class="row-key">账号:</div>
           <div class="row-value">{{ userInfo.username }}</div>
@@ -34,23 +38,26 @@
             ></el-input>
           </div>
         </div>
+        <div class="btngroup">
+          <el-button size="small" v-if="pageType === 'View'" @click="clickEdit"
+            >编辑</el-button
+          >
+          <el-button
+            type="primary"
+            size="small"
+            v-if="pageType === 'Edit'"
+            @click="clickConfirm"
+            >确定</el-button
+          >
+          <el-button
+            size="small"
+            v-if="pageType === 'Edit'"
+            @click="clickCancel"
+            >取消</el-button
+          >
+        </div>
       </div>
-      <div class="right-part">头像</div>
-    </div>
-    <div class="btngroup">
-      <el-button size="small" v-if="pageType === 'View'" @click="clickEdit"
-        >编辑</el-button
-      >
-      <el-button
-        type="primary"
-        size="small"
-        v-if="pageType === 'Edit'"
-        @click="clickConfirm"
-        >确定</el-button
-      >
-      <el-button size="small" v-if="pageType === 'Edit'" @click="clickCancel"
-        >取消</el-button
-      >
+      <div class="right-part">头像:</div>
     </div>
   </div>
 </template>
@@ -113,7 +120,7 @@ export default {
 
 <style lang="scss" scoped>
 ::v-deep .el-input--suffix {
-  width: 60px;
+  width: 100px;
 }
 .bg {
   padding: 15px 20px 0 20px;
@@ -137,16 +144,16 @@ export default {
           width: 80%;
         }
       }
+      .btngroup {
+        margin-top: 60px;
+        display: flex;
+        justify-content: center;
+      }
     }
     .right-part {
       flex: 1;
       margin-left: 30px;
     }
-  }
-  .btngroup {
-    margin-top: 60px;
-    display: flex;
-    justify-content: center;
   }
 }
 </style>
