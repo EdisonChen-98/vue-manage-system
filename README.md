@@ -5,7 +5,7 @@
 # vue-manage-system
 
 ## 关于
-很适合node新手入门，还在开发中
+很适合node新手入门，更多模块还在开发中  
 外卖商户后台管理平台的前端部分，基于Vue 2，配合后端项目食用：[后端项目地址](https://github.com/EdisonChen-98/node-manage-system)
 
 ## 技术栈
