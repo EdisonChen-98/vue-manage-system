@@ -5,9 +5,9 @@
 <template>
   <div class="menu">
     <el-menu
-      default-active="Home"
       class="el-menu-vertical-demo"
       @select="handleMenuSelect"
+      :default-active="$route.name"
     >
       <el-menu-item index="Home">
         <template slot="title">
@@ -15,7 +15,7 @@
           <span slot="title">首页</span></template
         >
       </el-menu-item>
-      <el-submenu index="Shop">
+      <el-submenu index="shop">
         <template slot="title">
           <i class="iconfont icon-shangjia icon" style="font-size: 20px"></i>
           <span slot="title">商铺</span></template
@@ -40,13 +40,16 @@
 export default {
   name: "Sidebar",
   data() {
-    return {};
+    return {
+      avtiveMenu: "Home",
+    };
   },
   methods: {
     handleMenuSelect(index) {
       this.$router.push({ name: index });
     },
   },
+  watch: {},
 };
 </script>
 

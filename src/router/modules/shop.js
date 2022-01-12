@@ -5,7 +5,7 @@ export default [
         component: () => import("@/views/components/shopOverview.vue"),
     },
     {
-        path: "myshop",
+        path: "myShop",
         name: "myShop",
         component: () => import("@/views/components/myShop.vue"),
     },

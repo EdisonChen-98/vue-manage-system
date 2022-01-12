@@ -36,11 +36,11 @@ const routes = [
 
 ]
 
-//防止到相同路由时冗余路由报错
-// const originalPush = Router.prototype.push
-// Router.prototype.push = function push(location) {
-//     return originalPush.call(this, location).catch(err => err)
-// }
+// 防止到相同路由时冗余路由报错
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+    return originalPush.call(this, location).catch(err => err)
+}
 const createRouter = () =>
     new Router({
         routes

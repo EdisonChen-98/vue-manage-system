@@ -1,8 +1,9 @@
 import request from '@/util/http.js'
 
-export function getAllShop() {
+export function getAllShop(data) {
     return request({
         url: 'auth/getAllShop',
-        method: 'get',
+        method: 'post',
+        data
     })
 }

@@ -29,14 +29,17 @@
             :width="item.width"
           />
         </el-table>
+      </div>
+      <div class="pagination">
         <el-pagination
           align="center"
+          :page-sizes="[3, 5]"
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
           :current-page="pageNum"
-          :page-sizes="[20, 50]"
           :page-size="pageSize"
           :total="total"
+          layout="total, sizes, prev, pager, next, jumper"
         >
         </el-pagination>
       </div>
@@ -61,36 +64,36 @@ export default {
       ],
       tableData: [],
       total: 0,
-      pageSize: 20,
+      pageSize: 3,
       pageNum: 1,
     };
   },
   mounted() {
-    this.getShopList();
+    this.getTableListFromServer();
   },
   methods: {
-    async getShopList() {
+    async getTableListFromServer() {
+      const { pageSize, pageNum } = this;
       const {
         data: { list, total },
-      } = await getAllShop();
+      } = await getAllShop({ pageSize, pageNum });
       this.tableData = list;
       this.total = total;
     },
     handleSizeChange(val) {
       this.pageSize = val;
-      // this.getTableListFromServer();
+      this.getTableListFromServer();
     },
     handleCurrentChange(val) {
       this.pageNum = val;
-      // this.getTableListFromServer();
+      this.getTableListFromServer();
     },
-  },
-  computed: {
     count(index) {
       const { pageSize, pageNum } = this;
-      return pageSize * (pageNum - 1) + index;
+      return pageSize * (pageNum - 1) + index + 1;
     },
   },
+  computed: {},
 };
 </script>
 
@@ -98,11 +101,14 @@ export default {
 .bg {
   padding: 20px;
   .table-content {
-    margin: 20px 10px 10px 10px;
+    margin: 30px 10px 10px 10px;
     .el-input {
       width: 30%;
     }
     .table {
+      margin-top: 5px;
+    }
+    .pagination {
       margin-top: 10px;
     }
   }
