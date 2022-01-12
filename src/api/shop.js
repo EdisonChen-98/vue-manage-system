@@ -7,3 +7,11 @@ export function getAllShop(data) {
         data
     })
 }
+
+export function getMyShop(data) {
+    return request({
+        url: 'auth/getMyShop',
+        method: 'post',
+        data
+    })
+}
