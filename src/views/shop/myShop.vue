@@ -8,8 +8,12 @@
     <tooltipTitle title="我的商铺" info="我的商铺"></tooltipTitle>
     <div class="table-content">
       <div class="search-row">
-        <el-input size="small">
-          <el-button slot="append" icon="el-icon-search"></el-button
+        <el-input size="small" v-model="keyword">
+          <el-button
+            slot="append"
+            icon="el-icon-search"
+            @click="clickSearch"
+          ></el-button
         ></el-input>
         <div class="search-row-btn">
           <el-tooltip content="刷新" placement="bottom" effect="light"
@@ -86,6 +90,7 @@ export default {
       total: 0,
       pageSize: 5,
       pageNum: 1,
+      keyword: "",
       dialogVisible: false,
     };
   },
@@ -94,10 +99,10 @@ export default {
   },
   methods: {
     async getTableListFromServer() {
-      const { pageSize, pageNum } = this;
+      const { pageSize, keyword, pageNum } = this;
       const {
         data: { total, list },
-      } = await getMyShop({ pageSize, pageNum });
+      } = await getMyShop({ pageSize, keyword, pageNum });
       this.total = total;
       this.tableData = list;
     },
@@ -113,7 +118,11 @@ export default {
       const { pageSize, pageNum } = this;
       return pageSize * (pageNum - 1) + index + 1;
     },
+    clickSearch() {
+      this.getTableListFromServer();
+    },
     clickRefresh() {
+      [this.pageSize, this.pageNum, this.keyword] = [5, 1, ""];
       this.getTableListFromServer();
     },
     clickAdd() {
