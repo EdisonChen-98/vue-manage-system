@@ -1,3 +1,7 @@
+<!--
+ * @Author: Edison Chen
+ * @Date: 2022-01-12 10:39:39
+-->
 
 <template>
   <div>权限</div>
@@ -5,7 +9,7 @@
 
 <script>
 export default {
-  name: "Anth",
+  name: "Auth",
   data() {
     return {};
   },

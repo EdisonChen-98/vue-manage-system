@@ -13,26 +13,40 @@ const routes = [
         path: "/",
         component: () => import("@/App.vue"),
         redirect: '/login',
-        children: [{
-            path: "login",
-            name: "Login",
-            component: () => import("@/views/Login.vue"),
-        },
-        {
-            path: "register",
-            name: "Register",
-            component: () => import("@/views/Register.vue"),
-        },
-        {
-            path: "/system",
-            name: "System",
-            component: () => import("@/views/Layout.vue"),
-            redirect: 'system/home',
-            children: [
-                ...Home, ...User, ...Shop, ...Auth,
-            ]
-        }]
+        children: [
+            {
+                path: "login",
+                name: "Login",
+                component: () => import("@/views/Login.vue"),
+            },
+            {
+                path: "register",
+                name: "Register",
+                component: () => import("@/views/Register.vue"),
+            },
+            {
+                path: "/system",
+                name: "System",
+                component: () => import("@/views/Layout.vue"),
+                redirect: 'system/home',
+                children: [
+                    ...Home, ...User, ...Shop, ...Auth,
+                ]
+            },
+            {
+                path: "/404",
+                name: "404",
+                component: () => import("@/views/404.vue"),
+            },
+
+        ]
+
     },
+    //必须放在routes对象最外层,最后面
+    {
+        path: "*",
+        redirect: "/404"
+    }
 
 ]
 

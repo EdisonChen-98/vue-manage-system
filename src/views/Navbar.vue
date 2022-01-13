@@ -4,19 +4,19 @@
 -->
 <template>
   <div class="navbar">
-    <img src="../../../public/js.svg" />
+    <img src="@//assets/js.svg" />
     <span class="title">商户后台管理平台</span>
     <div class="navbar-btn">
       <el-tooltip
         class="item"
-        effect="dark"
+        effect="light"
         content="商户信息"
         placement="bottom"
         ><i class="el-icon-user user" @click="clickUserInfo"></i
       ></el-tooltip>
       <el-tooltip
         class="item"
-        effect="dark"
+        effect="light"
         content="退出登录"
         placement="bottom"
         ><i class="iconfont icon-logout logout" @click="clickLogout"></i

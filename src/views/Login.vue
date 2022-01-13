@@ -4,7 +4,7 @@
 -->
 <template>
   <div class="bg">
-    <div class="header-pic"><img src="../../public/js.svg" /></div>
+    <div class="header-pic"><img src="@/assets/js.svg" /></div>
     <div class="row">
       <div class="label">账号</div>
       <el-input size="medium" v-model="form.username"></el-input>

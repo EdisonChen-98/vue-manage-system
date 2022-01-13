@@ -1,14 +1,28 @@
-<!--
- * @Author: Edison Chen
- * @Date: 2022-01-12 10:39:39
--->
 <template>
   <div class="bg">
-    <tooltipTitle title="商铺总览" info="商铺总览"></tooltipTitle>
+    <addShopDialog
+      :visible="dialogVisible"
+      @closeDialog="closeDialog"
+      @closeDialogAndRefresh="closeDialogAndRefresh"
+    ></addShopDialog>
+    <tooltipTitle title="我的商铺" info="我的商铺"></tooltipTitle>
     <div class="table-content">
-      <el-input size="small">
-        <el-button slot="append" icon="el-icon-search"></el-button
-      ></el-input>
+      <div class="search-row">
+        <el-input size="small">
+          <el-button slot="append" icon="el-icon-search"></el-button
+        ></el-input>
+        <div class="search-row-btn">
+          <el-tooltip content="刷新" placement="bottom" effect="light"
+            ><el-button
+              icon="el-icon-refresh-left"
+              @click="clickRefresh"
+            ></el-button
+          ></el-tooltip>
+          <el-tooltip content="添加商铺" placement="bottom" effect="light"
+            ><el-button icon="el-icon-plus" @click="clickAdd"></el-button
+          ></el-tooltip>
+        </div>
+      </div>
       <div class="table">
         <el-table
           :data="tableData"
@@ -27,13 +41,15 @@
             :label="item.label"
             :prop="item.prop"
             :width="item.width"
+            :formatter="item.formatter"
+            :align="item.align"
           />
         </el-table>
       </div>
       <div class="pagination">
         <el-pagination
           align="center"
-          :page-sizes="[3, 5]"
+          :page-sizes="[5, 20]"
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
           :current-page="pageNum"
@@ -48,24 +64,29 @@
 </template>
 
 <script>
-import { getAllShop } from "@/api/shop.js";
 import tooltipTitle from "@/components/tooltipTitle.vue";
-
+import addShopDialog from "./components/addShopDialog.vue";
+import { getMyShop } from "@/api/shop.js";
 export default {
-  name: "shopOverview",
-  components: { tooltipTitle },
+  name: "myShop",
+  components: { tooltipTitle, addShopDialog },
   data() {
     return {
       columns: [
         { label: "ID", prop: "id" },
         { label: "店铺名", prop: "shopName" },
         { label: "种类", prop: "category" },
-        { label: "评分", prop: "score" },
+        {
+          label: "评分",
+          prop: "score",
+          align: "center",
+        },
       ],
       tableData: [],
       total: 0,
-      pageSize: 3,
+      pageSize: 5,
       pageNum: 1,
+      dialogVisible: false,
     };
   },
   mounted() {
@@ -75,10 +96,10 @@ export default {
     async getTableListFromServer() {
       const { pageSize, pageNum } = this;
       const {
-        data: { list, total },
-      } = await getAllShop({ pageSize, pageNum });
-      this.tableData = list;
+        data: { total, list },
+      } = await getMyShop({ pageSize, pageNum });
       this.total = total;
+      this.tableData = list;
     },
     handleSizeChange(val) {
       this.pageSize = val;
@@ -92,8 +113,20 @@ export default {
       const { pageSize, pageNum } = this;
       return pageSize * (pageNum - 1) + index + 1;
     },
+    clickRefresh() {
+      this.getTableListFromServer();
+    },
+    clickAdd() {
+      this.dialogVisible = true;
+    },
+    closeDialog() {
+      this.dialogVisible = false;
+    },
+    closeDialogAndRefresh() {
+      this.dialogVisible = false;
+      this.getTableListFromServer();
+    },
   },
-  computed: {},
 };
 </script>
 
@@ -102,6 +135,17 @@ export default {
   padding: 20px;
   .table-content {
     margin: 30px 10px 10px 10px;
+    .search-row {
+      display: flex;
+      align-items: center;
+      .search-row-btn {
+        margin-left: auto;
+        .el-button {
+          padding: 5px;
+          color: #7b7878;
+        }
+      }
+    }
     .el-input {
       width: 30%;
     }

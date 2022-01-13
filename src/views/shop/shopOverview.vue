@@ -1,17 +1,14 @@
+<!--
+ * @Author: Edison Chen
+ * @Date: 2022-01-12 10:39:39
+-->
 <template>
   <div class="bg">
-    <tooltipTitle title="我的商铺" info="我的商铺"></tooltipTitle>
+    <tooltipTitle title="商铺总览" info="商铺总览"></tooltipTitle>
     <div class="table-content">
-      <div class="search-row">
-        <el-input size="small">
-          <el-button slot="append" icon="el-icon-search"></el-button
-        ></el-input>
-        <div class="search-row-btn">
-          <el-tooltip content="添加商铺" placement="bottom" effect="light"
-            ><el-button icon="el-icon-plus"></el-button
-          ></el-tooltip>
-        </div>
-      </div>
+      <el-input size="small">
+        <el-button slot="append" icon="el-icon-search"></el-button
+      ></el-input>
       <div class="table">
         <el-table
           :data="tableData"
@@ -36,7 +33,7 @@
       <div class="pagination">
         <el-pagination
           align="center"
-          :page-sizes="[3, 5]"
+          :page-sizes="[5, 20]"
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
           :current-page="pageNum"
@@ -51,10 +48,11 @@
 </template>
 
 <script>
+import { getAllShop } from "@/api/shop.js";
 import tooltipTitle from "@/components/tooltipTitle.vue";
-import { getMyShop } from "@/api/shop.js";
+
 export default {
-  name: "myShop",
+  name: "shopOverview",
   components: { tooltipTitle },
   data() {
     return {
@@ -66,7 +64,7 @@ export default {
       ],
       tableData: [],
       total: 0,
-      pageSize: 3,
+      pageSize: 5,
       pageNum: 1,
     };
   },
@@ -77,10 +75,10 @@ export default {
     async getTableListFromServer() {
       const { pageSize, pageNum } = this;
       const {
-        data: { total, list },
-      } = await getMyShop({ pageSize, pageNum });
-      this.total = total;
+        data: { list, total },
+      } = await getAllShop({ pageSize, pageNum });
       this.tableData = list;
+      this.total = total;
     },
     handleSizeChange(val) {
       this.pageSize = val;
@@ -95,6 +93,7 @@ export default {
       return pageSize * (pageNum - 1) + index + 1;
     },
   },
+  computed: {},
 };
 </script>
 
@@ -103,17 +102,6 @@ export default {
   padding: 20px;
   .table-content {
     margin: 30px 10px 10px 10px;
-    .search-row {
-      display: flex;
-      align-items: center;
-      .search-row-btn {
-        margin-left: auto;
-        .el-button {
-          padding: 4px;
-          color: #7b7878;
-        }
-      }
-    }
     .el-input {
       width: 30%;
     }
