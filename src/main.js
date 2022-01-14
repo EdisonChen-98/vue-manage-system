@@ -10,7 +10,9 @@ import 'element-ui/lib/theme-chalk/index.css';
 import router from '@/router/index.js'
 import '@/assets/icon/iconfont.css'
 import { tableHeaderColor } from '@/util/index'
+import * as echarts from "echarts";
 
+Vue.prototype.$echarts = echarts;
 Vue.prototype.tableHeaderColor = tableHeaderColor
 Vue.config.productionTip = false
 

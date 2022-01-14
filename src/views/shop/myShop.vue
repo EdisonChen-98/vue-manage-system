@@ -167,7 +167,6 @@ export default {
         .catch(() => {});
     },
     clickView(row) {
-      console.log("+++row", row);
       eventbus.$emit("dialogFetchData", row.id);
       this.dialogType = "view";
       this.dialogVisible = true;
