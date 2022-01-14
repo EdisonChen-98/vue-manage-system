@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import { getAllShop } from "@/api/shop.js";
+import { getAllShopList } from "@/api/shop.js";
 import tooltipTitle from "@/components/tooltipTitle.vue";
 
 export default {
@@ -76,7 +76,7 @@ export default {
       const { pageSize, pageNum } = this;
       const {
         data: { list, total },
-      } = await getAllShop({ pageSize, pageNum });
+      } = await getAllShopList({ pageSize, pageNum });
       this.tableData = list;
       this.total = total;
     },

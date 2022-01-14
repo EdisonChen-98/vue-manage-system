@@ -4,17 +4,17 @@
  */
 import request from '@/util/http.js'
 
-export function getAllShop(data) {
+export function getAllShopList(data) {
     return request({
-        url: 'auth/getAllShop',
+        url: 'auth/getAllShopList',
         method: 'post',
         data
     })
 }
 
-export function getMyShop(data) {
+export function getMyShopList(data) {
     return request({
-        url: 'auth/getMyShop',
+        url: 'auth/getMyShopList',
         method: 'post',
         data
     })
@@ -23,6 +23,30 @@ export function getMyShop(data) {
 export function addMyShop(data) {
     return request({
         url: 'auth/addMyShop',
+        method: 'post',
+        data
+    })
+}
+
+export function deleteMyShop(data) {
+    return request({
+        url: 'auth/deleteMyShop',
+        method: 'post',
+        data
+    })
+}
+
+export function getMyShopDetail(data) {
+    return request({
+        url: 'auth/getMyShopDetail',
+        method: 'post',
+        data
+    })
+}
+
+export function editMyShop(data) {
+    return request({
+        url: 'auth/editMyShop',
         method: 'post',
         data
     })

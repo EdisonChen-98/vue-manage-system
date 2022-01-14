@@ -1,14 +1,15 @@
 <template>
   <div class="bg">
-    <addShopDialog
+    <myShopDialog
       :visible="dialogVisible"
+      :type="dialogType"
       @closeDialog="closeDialog"
       @closeDialogAndRefresh="closeDialogAndRefresh"
-    ></addShopDialog>
+    ></myShopDialog>
     <tooltipTitle title="我的商铺" info="我的商铺"></tooltipTitle>
     <div class="table-content">
       <div class="search-row">
-        <el-input size="small" v-model="keyword">
+        <el-input size="small" v-model="keyword" placeholder="商铺名">
           <el-button
             slot="append"
             icon="el-icon-search"
@@ -48,6 +49,27 @@
             :formatter="item.formatter"
             :align="item.align"
           />
+          <el-table-column
+            fixed="right"
+            align="center"
+            label="操作"
+            width="200"
+          >
+            <template slot-scope="scope">
+              <el-button type="text" size="small" @click="clickView(scope.row)"
+                >查看</el-button
+              >
+              <el-button type="text" size="small" @click="clickEdit(scope.row)"
+                >编辑</el-button
+              >
+              <el-button
+                type="text"
+                size="small"
+                @click="clickDelete(scope.row)"
+                >删除</el-button
+              >
+            </template>
+          </el-table-column>
         </el-table>
       </div>
       <div class="pagination">
@@ -69,11 +91,12 @@
 
 <script>
 import tooltipTitle from "@/components/tooltipTitle.vue";
-import addShopDialog from "./components/addShopDialog.vue";
-import { getMyShop } from "@/api/shop.js";
+import myShopDialog from "./components/myShopDialog.vue";
+import { getMyShopList, deleteMyShop } from "@/api/shop.js";
+import eventbus from "@/util/event-bus";
 export default {
   name: "myShop",
-  components: { tooltipTitle, addShopDialog },
+  components: { tooltipTitle, myShopDialog },
   data() {
     return {
       columns: [
@@ -92,6 +115,7 @@ export default {
       pageNum: 1,
       keyword: "",
       dialogVisible: false,
+      dialogType: "",
     };
   },
   mounted() {
@@ -102,7 +126,7 @@ export default {
       const { pageSize, keyword, pageNum } = this;
       const {
         data: { total, list },
-      } = await getMyShop({ pageSize, keyword, pageNum });
+      } = await getMyShopList({ pageSize, keyword, pageNum });
       this.total = total;
       this.tableData = list;
     },
@@ -126,13 +150,38 @@ export default {
       this.getTableListFromServer();
     },
     clickAdd() {
+      this.dialogType = "add";
+      this.dialogVisible = true;
+    },
+    clickDelete(row) {
+      this.$confirm("你确定要删除该商铺吗?", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+      })
+        .then(async () => {
+          const { id } = row;
+          await deleteMyShop({ id });
+          this.getTableListFromServer();
+        })
+        .catch(() => {});
+    },
+    clickView(row) {
+      console.log("+++row", row);
+      eventbus.$emit("dialogFetchData", row.id);
+      this.dialogType = "view";
+      this.dialogVisible = true;
+    },
+    clickEdit(row) {
+      eventbus.$emit("dialogFetchData", row.id);
+      this.dialogType = "edit";
       this.dialogVisible = true;
     },
     closeDialog() {
-      this.dialogVisible = false;
+      this.dialogVisible = false; //弹窗点击取消
     },
     closeDialogAndRefresh() {
-      this.dialogVisible = false;
+      this.dialogVisible = false; //弹窗点击确认
       this.getTableListFromServer();
     },
   },
